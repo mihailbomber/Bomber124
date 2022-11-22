@@ -24,8 +24,8 @@ banner = '''
   ░      ░ ░ ░ ▒    ░░   ░ ░░          ░    ░ ░  ░   ░   ▒   
              ░ ░     ░                 ░  ░   ░          ░  ░
                                             ░                
-		    Авторы: Enigma & Commit 404 (nordbearbot)  
-        Версия: V.2.0
+		    Авторы: Loxyasik
+        Версия: V.1.0
 '''
 import sys
 try:
